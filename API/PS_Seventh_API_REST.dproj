@@ -49,7 +49,8 @@
         <DCC_K>false</DCC_K>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <SanitizedProjectName>PS_Seventh_API_REST</SanitizedProjectName>
-        <DCC_UnitSearchPath>modules\.dcp;..\modules\.dcp;modules\.dcu;..\modules\.dcu;modules;..\modules;modules\horse\src;..\modules\horse\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\modules\.dcp;..\modules\.dcu;..\modules;..\modules\horse\src;modules\.dcp;modules\.dcu;modules;modules\horse\src;modules\jhonson\src;..\modules\jhonson\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <FeatureFilesAdded>Firebird</FeatureFilesAdded>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>soapserver;IndySystem;vclwinx;BossExperts;fmx;vclie;DbxCommonDriver;bindengine;vcldb;IndyIPCommon;VCLRESTComponents;FireDACCommonODBC;FireDACCommonDriver;appanalytics;IndyProtocols;vclx;IndyIPClient;dbxcds;vcledge;vclFireDAC;bindcompvclwinx;bindcomp;FireDACCommon;IndyCore;RESTBackendComponents;bindcompfmx;bindcompdbx;inetdb;rtl;FireDACMySQLDriver;FireDACSqliteDriver;DbxClientDriver;FireDACADSDriver;RESTComponents;soapmidas;DBXSqliteDriver;vcl;vclactnband;IndyIPServer;dsnapxml;fmxFireDAC;dbexpress;dsnapcon;adortl;DBXMySQLDriver;VclSmp;inet;vclimg;vcltouch;FireDACPgDriver;FireDAC;fmxase;inetdbxpress;xmlrtl;tethering;dbrtl;bindcompvcl;dsnap;fmxdae;CloudService;FireDACMSAccDriver;CustomIPTransport;fmxobj;bindcompvclsmp;soaprtl;vcldsnap;DBXInterBaseDriver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
@@ -90,6 +91,50 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="src\App.pas"/>
+        <DCCReference Include="src\controllers\ServerController.pas"/>
+        <DCCReference Include="src\controllers\VideoController.pas"/>
+        <DCCReference Include="src\controllers\RecyclerController.pas"/>
+        <None Include="src\controllers\__history\ServerController.pas.~1~"/>
+        <None Include="src\PS_Seventh_API_REST.dproj.local"/>
+        <None Include="src\PS_Seventh_API_REST.identcache"/>
+        <None Include="src\__history\App.pas.~10~"/>
+        <None Include="src\__history\App.pas.~11~"/>
+        <None Include="src\__history\App.pas.~12~"/>
+        <None Include="src\__history\App.pas.~13~"/>
+        <None Include="src\__history\App.pas.~14~"/>
+        <None Include="src\__history\App.pas.~15~"/>
+        <None Include="src\__history\App.pas.~16~"/>
+        <None Include="src\__history\App.pas.~17~"/>
+        <None Include="src\__history\App.pas.~18~"/>
+        <None Include="src\__history\App.pas.~9~"/>
+        <None Include="modules\.bpl\bpl_order.txt"/>
+        <None Include="modules\horse\.github\FUNDING.yml"/>
+        <None Include="modules\horse\.github\workflows\tests.yml"/>
+        <None Include="modules\horse\.gitignore"/>
+        <None Include="modules\horse\boss-lock.json"/>
+        <None Include="modules\horse\boss.json"/>
+        <RcItem Include="modules\horse\img\horse.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>PngImage_1</ResourceId>
+        </RcItem>
+        <None Include="modules\horse\LICENSE"/>
+        <None Include="modules\horse\README.md"/>
+        <None Include="modules\horse\samples\delphi\apache\Apache.dpr"/>
+        <None Include="modules\horse\samples\delphi\apache\Apache.dproj"/>
+        <None Include="modules\horse\samples\delphi\cgi\CGI.dpr"/>
+        <None Include="modules\horse\samples\delphi\cgi\CGI.dproj"/>
+        <None Include="modules\horse\samples\delphi\console\Console.dpr"/>
+        <None Include="modules\horse\samples\delphi\console\Console.dproj"/>
+        <None Include="modules\horse\samples\delphi\daemon\Daemon.dpr"/>
+        <None Include="modules\horse\samples\delphi\daemon\Daemon.dproj"/>
+        <None Include="modules\horse\samples\delphi\isapi\ISAPI.dpr"/>
+        <None Include="modules\horse\samples\delphi\isapi\ISAPI.dproj"/>
+        <None Include="modules\horse\samples\delphi\Samples.groupproj"/>
+        <None Include="modules\horse\samples\delphi\vcl\VCL.dpr"/>
+        <None Include="modules\horse\samples\delphi\vcl\VCL.dproj"/>
+        <None Include="src\controllers\__history\RecyclerController.pas.~1~"/>
+        <None Include="src\controllers\__history\VideoController.pas.~1~"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -122,14 +167,2774 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\osx32\libcgsqlite3.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\osx32\libcgsqlite3.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
                     <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\osx64\libcgsqlite3.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\osx64\libcgsqlite3.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\osx64\libcgsqlite3.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\osx64\libcgsqlite3.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\BorlndMM.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\BorlndMM.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\DBXCommonDriver280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\DBXCommonDriver280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\EMSDevServer.exe" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\EMSDevServer.exe" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\EMSDevServerCommand.exe" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\EMSDevServerCommand.exe" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\FireDAC280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\FireDAC280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\FireDACCommon280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\FireDACCommon280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\FireDACCommonDriver280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\FireDACCommonDriver280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\FireDACIBDriver280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\FireDACIBDriver280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\IndyCore280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\IndyCore280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\IndyProtocols280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\IndyProtocols280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\IndySystem280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\IndySystem280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\bindengine280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\bindengine280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbrtl280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbrtl280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxadapter.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxadapter.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxasa.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxasa.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxase.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxase.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxdb2.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxdb2.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxfb.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxfb.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxinf.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxinf.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxint.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxint.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxmss.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxmss.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxmss9.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxmss9.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxmys.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxmys.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxora.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\dbxora.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\emsserverapi280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\emsserverapi280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\emsserverresource280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\emsserverresource280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\inet280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\inet280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\midas.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\midas.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\rtl280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\rtl280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vcl280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vcl280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vclFireDAC280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vclFireDAC280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vclWinX280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vclWinX280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vcldb280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vcldb280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vclimg280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vclimg280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vclx280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\vclx280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\xmlrtl280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin64\xmlrtl280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assest\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>Assest\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assest\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>Assest\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assest\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>Assest\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assest\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>Assest\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\BorlndMM.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\BorlndMM.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\DBXCommonDriver280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\DBXCommonDriver280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\EMSDevServer.exe" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\EMSDevServer.exe" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\EMSDevServerCommand.exe" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\EMSDevServerCommand.exe" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\FireDAC280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\FireDAC280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\FireDACCommon280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\FireDACCommon280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\FireDACCommonDriver280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\FireDACCommonDriver280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\FireDACIBDriver280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\FireDACIBDriver280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\IndyCore280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\IndyCore280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\IndyProtocols280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\IndyProtocols280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\IndySystem280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\IndySystem280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\bindengine280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\bindengine280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbrtl280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbrtl280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxadapter.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxadapter.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxasa.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxasa.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxase.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxase.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxdb2.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxdb2.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxfb.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxfb.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxinf.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxinf.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxint.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxint.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxmss.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxmss.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxmss9.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxmss9.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxmys.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxmys.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxora.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\dbxora.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\emsserverapi280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\emsserverapi280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\emsserverresource280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\emsserverresource280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\inet280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\inet280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\midas.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\midas.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\rtl280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\rtl280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vcl280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vcl280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vclFireDAC280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vclFireDAC280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vclWinX280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vclWinX280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vcldb280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vcldb280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vclimg280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vclimg280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vclx280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\vclx280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\xmlrtl280.bpl" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\xmlrtl280.bpl" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\EMSDevServerCommand" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\EMSDevServerCommand" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplDBXCommonDriver280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplDBXCommonDriver280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplFireDAC280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplFireDAC280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplFireDACCommon280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplFireDACCommon280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplFireDACCommonDriver280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplFireDACCommonDriver280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplFireDACIBDriver280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplFireDACIBDriver280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplIndyCore280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplIndyCore280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplIndyProtocols280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplIndyProtocols280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplIndySystem280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplIndySystem280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bpldbrtl280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bpldbrtl280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplemsserverapi280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplemsserverapi280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplemsserverresource280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplemsserverresource280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplinet280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplinet280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplrtl280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplrtl280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplxmlrtl280.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\binlinux64\bplxmlrtl280.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\linux64\libmidas.so.2" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\linux64\libmidas.so.2" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libmidas.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libmidas.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqladapter.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqladapter.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlasa.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlasa.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlfb.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlfb.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlib.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlib.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlinf.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlinf.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlmys.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlmys.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlora.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx32\libsqlora.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libmidas.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libmidas.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libmidas.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libmidas.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqladapter.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqladapter.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqladapter.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqladapter.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlasa.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlasa.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlasa.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlasa.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlfb.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlfb.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlfb.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlfb.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlib.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlib.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlib.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlib.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlinf.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlinf.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlinf.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlinf.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlmys.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlmys.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlmys.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlmys.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlora.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlora.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlora.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\redist\osx64\libsqlora.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android64\interbase\admin.ib" Configuration="Debug" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android64\interbase\admin.ib" Configuration="Release" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android64\interbase\ibconfig" Configuration="Debug" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android64\interbase\ibconfig" Configuration="Release" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android64\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android64\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android64\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android64\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android64\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android64\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android\interbase\admin.ib" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android\interbase\admin.ib" Configuration="Release" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android\interbase\ibconfig" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android\interbase\ibconfig" Configuration="Release" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\android\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios64_device\interbase\admin.ib" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios64_device\interbase\admin.ib" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios64_device\interbase\ibconfig" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios64_device\interbase\ibconfig" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios64_device\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios64_device\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios64_device\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios64_device\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios64_device\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios64_device\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_device\interbase\admin.ib" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_device\interbase\admin.ib" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_device\interbase\ibconfig" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_device\interbase\ibconfig" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_device\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_device\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_device\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_device\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_device\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_device\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\interbase\admin.ib" Configuration="Debug" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\interbase\admin.ib" Configuration="Release" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\interbase\ibconfig" Configuration="Debug" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\interbase\ibconfig" Configuration="Release" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\libibtogo.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\ios_sim64\libibtogo.dylib" Configuration="Release" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64\libgds.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64\libgds.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\admin.ib" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\admin.ib" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\ibconfig" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\ibconfig" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\intl\gdsintl" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\intl\gdsintl" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\libib_util.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\libib_util.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\libibtogo.so" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\linux64_togo\libibtogo.so" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64\libgds.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64\libgds.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64\libgds.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64\libgds.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\admin.ib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\admin.ib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\admin.ib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\admin.ib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\ibconfig" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\ibconfig" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\ibconfig" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\ibconfig" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\intl\gdsintl" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\intl\gdsintl" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\intl\gdsintl" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\intl\gdsintl" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\libib_util.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\libib_util.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\libib_util.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\libib_util.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\libibtogo.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\libibtogo.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\libibtogo.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos64_togo\libibtogo.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos\libgds.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos\libgds.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\admin.ib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\admin.ib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\ibconfig" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\ibconfig" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\intl\gdsintl" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\intl\gdsintl" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\libib_util.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\libib_util.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\libibtogo.dylib" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\macos_togo\libibtogo.dylib" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_iblite.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Debug" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="Android64">
+                        <RemoteDir>.\assets\internal\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="Linux64">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\Resources\StartUp\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice32">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSDevice64">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\reg_ibtogo.txt" Configuration="Release" Class="File">
+                    <Platform Name="iOSSimARM64">
+                        <RemoteDir>StartUp\Documents\interbase\license\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32\gds32.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32\gds32.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\ib_util.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\ib_util.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\ibtogo.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\ibtogo.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\ibxml.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\ibxml.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\interbase\ADMIN.IB" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\interbase\ADMIN.IB" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\interbase\intl\gdsintl.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\interbase\intl\gdsintl.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win32_togo\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64\ibclient64.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64\ibclient64.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\ib_util64.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\ib_util64.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\ibtogo64.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\ibtogo64.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\ibxml64.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\ibxml64.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\interbase\ADMIN.IB" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\interbase\ADMIN.IB" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\interbase\interbase.msg" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\interbase\interbase.msg" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\interbase\intl\gdsintl.dll" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\interbase\intl\gdsintl.dll" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\intl\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\interbase\license.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\interbase\license.txt" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\interbase\oss_license_notice.txt" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(IBREDISTDIR)\win64_togo\interbase\oss_license_notice.txt" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
+                        <RemoteDir>interbase\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(Platform)\$(Configuration)\AppxManifest.xml" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(Platform)\$(Configuration)\AppxManifest.xml" Configuration="Debug" Class="File">
+                    <Platform Name="Win64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(Platform)\$(Configuration)\AppxManifest.xml" Configuration="Release" Class="File">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(Platform)\$(Configuration)\AppxManifest.xml" Configuration="Release" Class="File">
+                    <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="Win32\Debug\PS_Seventh_API_REST.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>PS_Seventh_API_REST.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\.bpl\bpl_order.txt" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\.github\FUNDING.yml" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\.github\workflows\tests.yml" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\.gitignore" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\LICENSE" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\README.md" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\boss-lock.json" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\boss.json" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\img\horse.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\Samples.groupproj" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\apache\Apache.dpr" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\apache\Apache.dproj" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\cgi\CGI.dpr" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\cgi\CGI.dproj" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\console\Console.dpr" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\console\Console.dproj" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\daemon\Daemon.dpr" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\daemon\Daemon.dproj" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\isapi\ISAPI.dpr" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\isapi\ISAPI.dproj" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\vcl\VCL.dpr" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="modules\horse\samples\delphi\vcl\VCL.dproj" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\PS_Seventh_API_REST.dproj.local" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\PS_Seventh_API_REST.identcache" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~10~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~11~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~12~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~13~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~14~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~15~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~16~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~17~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~18~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~9~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\RecyclerController.pas.~1~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\ServerController.pas.~1~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\VideoController.pas.~1~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -960,6 +3765,7 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
+            <ModelSupport>True</ModelSupport>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
