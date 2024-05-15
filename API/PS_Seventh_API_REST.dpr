@@ -4,7 +4,8 @@ program PS_Seventh_API_REST;
 
 {$R *.res}
 
-uses Horse;
+uses
+  Horse;
 
 begin
   THorse.Get('/ping',

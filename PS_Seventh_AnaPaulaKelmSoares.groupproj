@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C538B389-0508-40F7-844E-03C39D46C2E0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="API\PS_Seventh_API_REST.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="API\API_tests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PS_Seventh_API_REST">
+        <MSBuild Projects="API\PS_Seventh_API_REST.dproj"/>
+    </Target>
+    <Target Name="PS_Seventh_API_REST:Clean">
+        <MSBuild Projects="API\PS_Seventh_API_REST.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PS_Seventh_API_REST:Make">
+        <MSBuild Projects="API\PS_Seventh_API_REST.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="API_tests">
+        <MSBuild Projects="API\API_tests.dproj"/>
+    </Target>
+    <Target Name="API_tests:Clean">
+        <MSBuild Projects="API\API_tests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="API_tests:Make">
+        <MSBuild Projects="API\API_tests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PS_Seventh_API_REST;API_tests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PS_Seventh_API_REST:Clean;API_tests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PS_Seventh_API_REST:Make;API_tests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
