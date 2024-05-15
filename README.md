@@ -56,3 +56,7 @@ Desenvolvimentod e uma API-REST em Delphi para o contexto de videomonitoramento 
 Usei o Boss como gerenciador de dependências
 
 https://github.com/HashLoad
+
+## Testes unitários
+
+Usei o DUnitX

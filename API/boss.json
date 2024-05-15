@@ -1,6 +1,6 @@
 {
-	"name": "PS-Seventh-Delphi-Pleno-API-REST",
-	"description": "",
+	"name": "PS_Seventh_API_REST",
+	"description": "API REST desenvolvida com Delphi 11 usando o framework Horse",
 	"version": "1.0.0",
 	"homepage": "",
 	"mainsrc": "./src",
