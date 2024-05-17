@@ -13,11 +13,40 @@ procedure ListServers(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 
 implementation
 
-procedure CreateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+type
+  TServerData = record
+    ID: string;
+    Name: string;
+    IP: string;
+    Port: Integer;
+  end;
+var
+  Servers: TArray<TServerData>;
 
+
+procedure CreateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  ServerData: TServerData;
+  JSONBody: TJSONObject;
 begin
-  // Implemente a lógica para criar um novo servidor
-  Res.Send('CreateServer');
+  JSONBody := Req.Body<TJSONObject>;
+
+  // Extract server data from JSON body
+  ServerData.ID := TGUID.NewGuid.ToString;
+  ServerData.Name := JSONBody.GetValue('name').Value;
+  ServerData.IP := JSONBody.GetValue('ip').Value;
+  ServerData.Port := StrToIntDef(JSONBody.GetValue('port').Value, 0);
+
+  // Add the new server to the list of servers
+  SetLength(Servers, Length(Servers) + 1);
+  Servers[High(Servers)] := ServerData;
+
+  Res.Send(TJSONObject.Create
+    .AddPair('id', ServerData.ID)
+    .AddPair('name', ServerData.Name)
+    .AddPair('ip', ServerData.IP)
+    .AddPair('port', ServerData.Port.ToString)
+    .ToString);
 end;
 
 procedure DeleteServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
