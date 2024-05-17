@@ -14,6 +14,7 @@ procedure ListServers(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 implementation
 
 procedure CreateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+
 begin
   // Implemente a lógica para criar um novo servidor
   Res.Send('CreateServer');
@@ -44,3 +45,4 @@ begin
 end;
 
 end.
+

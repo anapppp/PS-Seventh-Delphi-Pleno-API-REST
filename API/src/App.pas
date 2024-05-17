@@ -6,15 +6,20 @@ uses
   Horse, System.JSON, System.SysUtils, System.Classes;
 
 procedure StartServer;
+procedure StopServer;
 
 implementation
 
 uses
   ServerController, VideoController, RecyclerController;
 
+var
+  GlobalServer: THorse;
+
 procedure StartServer;
 begin
-  THorse
+  GlobalServer := THorse.Create();
+  GlobalServer
     // SERVERS
     // Criar um novo servidor
     .Post('/api/server', ServerController.CreateServer)
@@ -44,11 +49,18 @@ begin
     .Post('/api/recycler/process/:days', RecyclerController.ProcessRecycle)
     .Get('/api/recycler/status', RecyclerController.GetRecyclerStatus);
 
-  THorse.Listen(9000);
+  GlobalServer.Listen(9000);
+
+
+end;
+
+procedure StopServer;
+begin
+  if Assigned(GlobalServer) then
+  begin
+    GlobalServer.StopListen;
+    FreeAndNil(GlobalServer);
+  end;
 end;
 
 end.
-
-
-
-

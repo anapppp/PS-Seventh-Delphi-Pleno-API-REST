@@ -23,10 +23,3 @@ begin
       Writeln('Erro: ', E.Message);
   end;
 end.
-
-
-
-
-
-
-

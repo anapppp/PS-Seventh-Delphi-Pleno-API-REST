@@ -13,7 +13,13 @@ uses
   DUnitX.Loggers.Xml.NUnit,
   {$ENDIF }
   DUnitX.TestFramework,
-  Unit1 in 'tests\Unit1.pas';
+  RecyclerTest in 'tests\controllers\RecyclerTest.pas',
+  ServerTest in 'tests\controllers\ServerTest.pas',
+  VideoTest in 'tests\controllers\VideoTest.pas',
+  VideoController in 'src\controllers\VideoController.pas',
+  RecyclerController in 'src\controllers\RecyclerController.pas',
+  ServerController in 'src\controllers\ServerController.pas',
+  App in 'src\App.pas';
 
 {$IFNDEF TESTINSIGHT}
 var
