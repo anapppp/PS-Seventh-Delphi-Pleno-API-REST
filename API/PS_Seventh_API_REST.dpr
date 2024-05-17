@@ -2,17 +2,24 @@ program PS_Seventh_API_REST;
 
 {$APPTYPE CONSOLE}
 
-{$R *.res}
+{$R *.dres}
 
 uses
-  Horse;
+  System.SysUtils,
+  Horse,
+  Horse.Commons,
+  Horse.Jhonson,
+  App in 'src\App.pas',
+  ServerController in 'src\controllers\ServerController.pas',
+  VideoController in 'src\controllers\VideoController.pas',
+  RecyclerController in 'src\controllers\RecyclerController.pas';
 
 begin
-  THorse.Get('/ping',
-    procedure(Req: THorseRequest; Res: THorseResponse)
-    begin
-      Res.Send('pong');
-    end);
-
-  THorse.Listen(9000);
+  try
+    Writeln('Servidor rodando na porta 9000.');
+    App.StartServer;
+  except
+    on E: Exception do
+      Writeln('Erro: ', E.Message);
+  end;
 end.

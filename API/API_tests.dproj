@@ -51,7 +51,7 @@
         <UsingDelphiRTL>true</UsingDelphiRTL>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
-        <DCC_UnitSearchPath>$(DUnitX);$(DCC_UnitSearchPath);modules\.dcp;..\modules\.dcp;modules\.dcu;..\modules\.dcu;modules;..\modules;modules\horse\src;..\modules\horse\src</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>$(DUnitX);..\modules\.dcp;..\modules\.dcu;..\modules;..\modules\horse\src;modules\.dcp;modules\.dcu;modules;modules\horse\src;modules\jhonson\src;..\modules\jhonson\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <SanitizedProjectName>API_tests</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -87,7 +87,39 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="tests\Unit1.pas"/>
+        <DCCReference Include="tests\controllers\RecyclerTest.pas"/>
+        <DCCReference Include="tests\controllers\ServerTest.pas"/>
+        <DCCReference Include="tests\controllers\VideoTest.pas"/>
+        <DCCReference Include="src\controllers\VideoController.pas"/>
+        <DCCReference Include="src\controllers\RecyclerController.pas"/>
+        <DCCReference Include="src\controllers\ServerController.pas"/>
+        <DCCReference Include="src\App.pas"/>
+        <None Include="src\controllers\__history\RecyclerController.pas.~1~"/>
+        <None Include="src\controllers\__history\RecyclerController.pas.~2~"/>
+        <None Include="src\controllers\__history\RecyclerController.pas.~3~"/>
+        <None Include="src\controllers\__history\RecyclerController.pas.~4~"/>
+        <None Include="src\controllers\__history\RecyclerController.pas.~5~"/>
+        <None Include="src\controllers\__history\ServerController.pas.~1~"/>
+        <None Include="src\controllers\__history\ServerController.pas.~2~"/>
+        <None Include="src\controllers\__history\ServerController.pas.~3~"/>
+        <None Include="src\controllers\__history\ServerController.pas.~4~"/>
+        <None Include="src\controllers\__history\VideoController.pas.~1~"/>
+        <None Include="src\controllers\__history\VideoController.pas.~2~"/>
+        <None Include="src\controllers\__history\VideoController.pas.~3~"/>
+        <None Include="src\controllers\__history\VideoController.pas.~4~"/>
+        <None Include="src\controllers\__history\VideoController.pas.~5~"/>
+        <None Include="src\PS_Seventh_API_REST.dproj.local"/>
+        <None Include="src\PS_Seventh_API_REST.identcache"/>
+        <None Include="src\__history\App.pas.~16~"/>
+        <None Include="src\__history\App.pas.~17~"/>
+        <None Include="src\__history\App.pas.~18~"/>
+        <None Include="src\__history\App.pas.~19~"/>
+        <None Include="src\__history\App.pas.~20~"/>
+        <None Include="src\__history\App.pas.~21~"/>
+        <None Include="src\__history\App.pas.~22~"/>
+        <None Include="src\__history\App.pas.~23~"/>
+        <None Include="src\__history\App.pas.~24~"/>
+        <None Include="src\__history\App.pas.~25~"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -128,6 +160,162 @@
                 <DeployFile LocalName="Win32\Debug\API_tests.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>API_tests.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\PS_Seventh_API_REST.dproj.local" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\PS_Seventh_API_REST.identcache" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~16~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~17~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~18~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~19~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~20~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~21~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~22~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~23~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~24~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\__history\App.pas.~25~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\RecyclerController.pas.~1~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\RecyclerController.pas.~2~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\RecyclerController.pas.~3~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\RecyclerController.pas.~4~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\RecyclerController.pas.~5~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\ServerController.pas.~1~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\ServerController.pas.~2~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\ServerController.pas.~3~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\ServerController.pas.~4~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\VideoController.pas.~1~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\VideoController.pas.~2~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\VideoController.pas.~3~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\VideoController.pas.~4~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="src\controllers\__history\VideoController.pas.~5~" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
