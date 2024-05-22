@@ -60,3 +60,39 @@ https://github.com/HashLoad
 ## Testes unitários
 
 Usei o DUnitX
+
+## Exemplos de conteúdo
+
+### Servidor
+
+```json
+{ 
+    "id": "{00A077F6-6ACF-41AF-942A-501BE8FB80F8}",
+    "name": "Servidor 1", 
+    "ip": "127.0.0.1", 
+    "port": 8080 
+}
+```
+
+### Video
+
+```json
+{ 
+    "id": "{11A077F6-6ACF-41AF-942A-501BE8FB80B8}", 
+    "description":"Vídeo 1", 
+    "sizeInBytes": 291923 
+}
+```
+
+### Reciclagem
+
+```json
+{ 
+    "status": "running" 
+}
+```
+```json
+{ 
+    "status": "not running" 
+}
+```
