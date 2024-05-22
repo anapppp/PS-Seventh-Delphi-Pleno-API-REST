@@ -3,21 +3,27 @@ unit App;
 interface
 
 uses
-  Horse, System.JSON, System.SysUtils, System.Classes;
+  Horse,
+  System.JSON,
+  System.SysUtils,
+  ServerController,
+  VideoController,
+  RecyclerController;
+
 
 procedure StartServer;
 procedure StopServer;
 
 implementation
 
-uses
-  ServerController, VideoController, RecyclerController;
-
 var
   GlobalServer: THorse;
 
+
+
 procedure StartServer;
 begin
+
   GlobalServer := THorse.Create();
   GlobalServer
     // SERVERS
@@ -50,9 +56,8 @@ begin
     .Get('/api/recycler/status', RecyclerController.GetRecyclerStatus);
 
   GlobalServer.Listen(9000);
-
-
 end;
+
 
 procedure StopServer;
 begin

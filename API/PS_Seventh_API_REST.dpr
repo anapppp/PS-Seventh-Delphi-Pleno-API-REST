@@ -14,12 +14,17 @@ uses
   VideoController in 'src\controllers\VideoController.pas',
   RecyclerController in 'src\controllers\RecyclerController.pas';
 
+
 begin
   try
     Writeln('Servidor rodando na porta 9000.');
     App.StartServer;
   except
     on E: Exception do
-      Writeln('Erro: ', E.Message);
+    begin
+     Writeln('Erro: ' + E.Message);
+     Writeln('Tipo de exceção: ' + E.ClassName);
+    end;
   end;
 end.
+
