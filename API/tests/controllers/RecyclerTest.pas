@@ -35,12 +35,7 @@ procedure TRecyclerTest.TestProcessRecycle;
 var
   Response: string;
 begin
-  // Simulando uma solicitação POST para criar um novo servidor
-  // Aqui você pode incluir todos os parâmetros necessários na requisição
-  // e verificar se a resposta está de acordo com o esperado
   Response := 'True';
-
-  // Verifica se a resposta indica sucesso (por exemplo, código de status HTTP 200)
   Assert.IsTrue(True, 'CreateServer should return success message');
 end;
 
