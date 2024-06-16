@@ -5,18 +5,21 @@ uses
   Horse.Jhonson,
   System.JSON,
   System.SysUtils,
+  Data.DB, DataBaseManager,
   ServerController,
   VideoController,
   RecyclerController;
 
 procedure StartServer;
 procedure StopServer;
+
 implementation
 var
   GlobalServer: THorse;
+
 procedure StartServer;
 begin
-  ServerController.InitializeDatabase;
+  DataBaseManager.InitializeDataBase;
   GlobalServer := THorse.Create();
   THorse.Use(Jhonson);
     // SERVERS

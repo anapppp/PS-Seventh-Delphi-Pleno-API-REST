@@ -1,14 +1,12 @@
 program PS_Seventh_API_REST;
-
 {$APPTYPE CONSOLE}
-
 {$R *.dres}
-
 uses
   System.SysUtils,
   Horse,
   Horse.Commons,
   Horse.Jhonson,
+  DataBaseManager in 'src\DataBaseManager.pas',
   App in 'src\App.pas',
   ServerController in 'src\controllers\ServerController.pas',
   VideoController in 'src\controllers\VideoController.pas',
@@ -25,4 +23,3 @@ begin
     end;
   end;
 end.
-

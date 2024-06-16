@@ -2,11 +2,10 @@ unit ServerController;
 interface
 uses
   Horse, System.JSON, System.SysUtils,
-  Data.DB,
+  Data.DB, DataBaseManager,
   FireDAC.Comp.Client, FireDAC.Stan.Def, FireDAC.Stan.Async,
-  FireDAC.DApt, FireDAC.Phys.SQLite, FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Stan.Param;
+  FireDAC.DApt, FireDAC.Phys.SQLite, FireDAC.VCLUI.Wait, FireDAC.Stan.Param;
 
-procedure InitializeDatabase;
 procedure CreateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure DeleteServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure GetServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
@@ -27,8 +26,8 @@ type
     property IP: string read FIP write FIP;
     property Port: Integer read FPort write FPort;
   end;
-var
-  FDConnection: TFDConnection;
+
+
 constructor  TServerData.Create(AID: string; AName: string; AIP: string; APort: Integer);
 begin
   FID := AID;
@@ -37,19 +36,6 @@ begin
   FPort := APort;
 end;
 
-procedure InitializeDatabase;
-begin
-  FDConnection := TFDConnection.Create(nil);
-  FDConnection.DriverName := 'SQLite';
-  FDConnection.Params.Database := 'servers.db';
-  FDConnection.LoginPrompt := False;
-  FDConnection.Connected := True;
-  FDConnection.ExecSQL('CREATE TABLE IF NOT EXISTS Servers (' +
-    'ID TEXT PRIMARY KEY, ' +
-    'Name TEXT, ' +
-    'IP TEXT, ' +
-    'Port INTEGER)');
-end;
 
 procedure CreateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
@@ -80,6 +66,11 @@ begin
 
   JSONBody.AddPair('ID', ServerData.ID);
   Res.Send(JSONBody).Status(201);
+end;
+
+procedure UpdateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+begin
+   Res.Send('UpdateServer')   // Precisa fazer????
 end;
 
 procedure DeleteServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
