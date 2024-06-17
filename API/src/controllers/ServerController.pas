@@ -1,5 +1,7 @@
 unit ServerController;
+
 interface
+
 uses
   Horse, System.JSON, System.SysUtils,
   Data.DB, DataBaseManager,
@@ -7,13 +9,17 @@ uses
   FireDAC.DApt, FireDAC.Phys.SQLite, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
   IdTCPClient, IdException;
 
+function ServerExists(serverId: string): Boolean;
 procedure CreateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure DeleteServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure UpdateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure GetServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
-procedure CheckServerAvailability(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+procedure CheckServerAvailability(Req: THorseRequest; Res: THorseResponse;
+  Next: TProc);
 procedure ListServers(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+
 implementation
+
 type
   TServerData = class
   private
@@ -29,8 +35,8 @@ type
     property Port: Integer read FPort write FPort;
   end;
 
-
-constructor  TServerData.Create(AID: string; AName: string; AIP: string; APort: Integer);
+constructor TServerData.Create(AID: string; AName: string; AIP: string;
+  APort: Integer);
 begin
   FID := AID;
   FName := AName;
@@ -38,25 +44,43 @@ begin
   FPort := APort;
 end;
 
+function ServerExists(serverId: string): Boolean;
+var
+  vQuery: TFDQuery;
+begin
+  Result := False;
+
+  try
+    vQuery := TFDQuery.Create(nil);
+    vQuery.Connection := FDConnection;
+    vQuery.SQL.Text := 'SELECT * FROM Servers WHERE ID = :ServerId';
+    vQuery.ParamByName('ServerId').AsString := serverId;
+    vQuery.Open;
+    Result := not vQuery.IsEmpty;
+  finally
+    vQuery.Free;
+  end;
+end;
 
 procedure CreateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   ServerData: TServerData;
   JSONBody: TJSONObject;
-  ServerID, ServerName, ServerIP: string;
+  serverId, ServerName, ServerIP: string;
   ServerPort: Integer;
   FDQuery: TFDQuery;
 begin
   JSONBody := Req.Body<TJSONObject>;
-  ServerID := TGUID.NewGuid.ToString;
+  serverId := TGUID.NewGuid.ToString;
   ServerName := JSONBody.GetValue('name').Value;
   ServerIP := JSONBody.GetValue('ip').Value;
   ServerPort := StrToIntDef(JSONBody.GetValue('port').Value, 0);
-  ServerData := TServerData.Create(ServerID, ServerName, ServerIP, ServerPort);
+  ServerData := TServerData.Create(serverId, ServerName, ServerIP, ServerPort);
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := FDConnection;
-    FDQuery.SQL.Text := 'INSERT INTO Servers (ID, Name, IP, Port) VALUES (:ID, :Name, :IP, :Port)';
+    FDQuery.SQL.Text :=
+      'INSERT INTO Servers (ID, Name, IP, Port) VALUES (:ID, :Name, :IP, :Port)';
     FDQuery.ParamByName('ID').AsString := ServerData.ID;
     FDQuery.ParamByName('Name').AsString := ServerData.Name;
     FDQuery.ParamByName('IP').AsString := ServerData.IP;
@@ -78,28 +102,35 @@ var
   vQuery: TFDQuery;
   vAllFieldsPresent: Boolean;
 begin
+
   JSONBody := Req.Body<TJSONObject>;
   vServerID := Req.Params['serverId'];
 
   vAllFieldsPresent := Assigned(JSONBody.FindValue('name')) and
-                       Assigned(JSONBody.FindValue('ip')) and
-                       Assigned(JSONBody.FindValue('port'));
-
+    Assigned(JSONBody.FindValue('ip')) and Assigned(JSONBody.FindValue('port'));
   if not vAllFieldsPresent then
   begin
-    Res.Send(TJSONObject.Create.AddPair('message', 'Todos os campos devem ser fornecidos')).Status(400);
-  end
-  else
-  begin
-    vServerName := JSONBody.GetValue('name').Value;
-    vServerIP := JSONBody.GetValue('ip').Value;
-    vServerPort := StrToIntDef(JSONBody.GetValue('port').Value, 0);
+    Res.Send(TJSONObject.Create.AddPair('message',
+      'Todos os campos devem ser fornecidos')).Status(400);
+    Exit;
+  end;
 
+  if not ServerExists(vServerID) then
+  begin
+    Res.Send(TJSONObject.Create.AddPair('message', 'Servidor não encontrado'))
+      .Status(404);
+    Exit;
+  end;
+
+  vServerName := JSONBody.GetValue('name').Value;
+  vServerIP := JSONBody.GetValue('ip').Value;
+  vServerPort := StrToIntDef(JSONBody.GetValue('port').Value, 0);
 
   vQuery := TFDQuery.Create(nil);
   try
     vQuery.Connection := FDConnection;
-    vQuery.SQL.Text := 'UPDATE Servers SET Name = :Name, IP = :IP, Port = :Port WHERE ID = :ID';
+    vQuery.SQL.Text :=
+      'UPDATE Servers SET Name = :Name, IP = :IP, Port = :Port WHERE ID = :ID';
     vQuery.ParamByName('ID').AsString := vServerID;
     vQuery.ParamByName('Name').AsString := vServerName;
     vQuery.ParamByName('IP').AsString := vServerIP;
@@ -108,27 +139,37 @@ begin
 
     if vQuery.RowsAffected = 0 then
     begin
-      Res.Send(TJSONObject.Create.AddPair('message', 'Servidor com ID = ' + vServerID + ' não encontrado.')).Status(404);
+      Res.Send(TJSONObject.Create.AddPair('message',
+        'Não foi possivel atualizar o servidor')).Status(404);
     end
     else
     begin
-      Res.Send(TJSONObject.Create.AddPair('message', 'Servidor atualizado com sucesso.')).Status(200);
+      Res.Send(TJSONObject.Create.AddPair('message',
+        'Servidor atualizado com sucesso.')).Status(200);
     end;
   finally
     vQuery.Free;
   end;
-  end;
+
 end;
 
 procedure DeleteServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   vQuery: TFDQuery;
-  vJsonObj: TJsonObject;
+  vJsonObj: TJSONObject;
   vServerID: String;
 begin
   vQuery := nil;
   try
     vServerID := Req.Params['serverId'];
+
+    if not ServerExists(vServerID) then
+    begin
+      Res.Send(TJSONObject.Create.AddPair('message', 'Servidor não encontrado'))
+        .Status(404);
+      Exit;
+    end;
+
     vQuery := TFDQuery.Create(nil);
     vQuery.Connection := FDConnection;
     vQuery.SQL.Text := 'DELETE FROM Servers WHERE ID = :ID';
@@ -137,13 +178,13 @@ begin
 
     if vQuery.RowsAffected = 0 then
     begin
-      vJsonObj := TJsonObject.Create;
-      vJsonObj.AddPair('message', 'Servidor com ID = '+ vServerID + ' não encontrado.');
+      vJsonObj := TJSONObject.Create;
+      vJsonObj.AddPair('message', 'Não foi possivel excluir o servidor');
       Res.Send(vJsonObj).Status(404);
     end
     else
     begin
-      vJsonObj := TJsonObject.Create;
+      vJsonObj := TJSONObject.Create;
       vJsonObj.AddPair('message', 'Servidor excluido com sucesso');
       Res.Send(vJsonObj).Status(200);
     end;
@@ -156,38 +197,44 @@ end;
 procedure GetServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   vQuery: TFDQuery;
-  vJsonObj: TJsonObject;
+  vJsonObj: TJSONObject;
   vServerID: String;
 begin
   vQuery := nil;
   try
     vServerID := Req.Params['serverId'];
+
+    if not ServerExists(vServerID) then
+    begin
+      Res.Send(TJSONObject.Create.AddPair('message', 'Servidor não encontrado'))
+        .Status(404);
+      Exit;
+    end;
+
     vQuery := TFDQuery.Create(nil);
     vQuery.Connection := FDConnection;
     vQuery.SQL.Text := 'SELECT * FROM Servers WHERE ID = :ID';
     vQuery.ParamByName('ID').AsString := vServerID;
     vQuery.Open;
-    vJsonObj := TJsonObject.Create;
-    if vQuery.IsEmpty then
-    begin
-      vJsonObj.AddPair('message', 'Servidor com ID = '+ vServerID + ' não encontrado.');
-      Res.Send(vJsonObj).Status(404);
-    end
-    else
-    begin
-      vJsonObj.AddPair('ID', TJsonString.Create(vQuery.FieldByName('ID').AsString));
-      vJsonObj.AddPair('Name', TJsonString.Create(vQuery.FieldByName('Name').AsString));
-      vJsonObj.AddPair('IP', TJsonString.Create(vQuery.FieldByName('IP').AsString));
-      vJsonObj.AddPair('Port', TJsonNumber.Create(vQuery.FieldByName('Port').AsInteger));
-      Res.Send(vJsonObj).Status(200);
-    end;
+    vJsonObj := TJSONObject.Create;
+
+    vJsonObj.AddPair('ID', TJsonString.Create(vQuery.FieldByName('ID')
+      .AsString));
+    vJsonObj.AddPair('Name', TJsonString.Create(vQuery.FieldByName('Name')
+      .AsString));
+    vJsonObj.AddPair('IP', TJsonString.Create(vQuery.FieldByName('IP')
+      .AsString));
+    vJsonObj.AddPair('Port', TJsonNumber.Create(vQuery.FieldByName('Port')
+      .AsInteger));
+    Res.Send(vJsonObj).Status(200);
+
   finally
     vQuery.Free;
   end;
 end;
 
-
-procedure CheckServerAvailability(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+procedure CheckServerAvailability(Req: THorseRequest; Res: THorseResponse;
+  Next: TProc);
 var
   vServerID: string;
   vQuery: TFDQuery;
@@ -197,6 +244,13 @@ var
   vPort: Integer;
 begin
   vServerID := Req.Params['serverId'];
+  if not ServerExists(vServerID) then
+  begin
+    Res.Send(TJSONObject.Create.AddPair('message', 'Servidor não encontrado'))
+      .Status(404);
+    Exit;
+  end;
+
   vQuery := TFDQuery.Create(nil);
   vTCPClient := TIdTCPClient.Create(nil);
   vJsonObj := TJSONObject.Create;
@@ -206,39 +260,31 @@ begin
     vQuery.ParamByName('ID').AsString := vServerID;
     vQuery.Open;
 
-    if vQuery.IsEmpty then
-    begin
-      vJsonObj.AddPair('message', 'Servidor com ID = ' + vServerID + ' não encontrado.');
-      Res.Send(vJsonObj).Status(404);
-    end
-    else
-    begin
-      vIP := vQuery.FieldByName('IP').AsString;
-      vPort := vQuery.FieldByName('port').AsInteger;
+    vIP := vQuery.FieldByName('IP').AsString;
+    vPort := vQuery.FieldByName('port').AsInteger;
 
-      vTCPClient.Host := vIP;
-      vTCPClient.Port := vPort;
-      try
-        vTCPClient.ConnectTimeout := 1000;
-        vTCPClient.Connect;
-        vJsonObj.AddPair('status', 'available');
-      except
-        vJsonObj.AddPair('status', 'unavailable');
-      end;
-      Res.Send(vJsonObj).Status(200);
+    vTCPClient.Host := vIP;
+    vTCPClient.Port := vPort;
+    try
+      vTCPClient.ConnectTimeout := 1000;
+      vTCPClient.Connect;
+      vJsonObj.AddPair('status', 'available');
+    except
+      vJsonObj.AddPair('status', 'unavailable');
     end;
+    Res.Send(vJsonObj).Status(200);
+
   finally
     vQuery.Free;
     vTCPClient.Free;
   end;
 end;
 
-
 procedure ListServers(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   vQuery: TFDQuery;
   vJsonArr: TJsonArray;
-  vJsonObj: TJsonObject;
+  vJsonObj: TJSONObject;
   vCount: Integer;
 begin
   vQuery := nil;
@@ -252,11 +298,15 @@ begin
     vJsonArr := TJsonArray.Create;
     for vCount := 0 to vQuery.RecordCount - 1 do
     begin
-      vJsonObj := TJsonObject.Create;
-      vJsonObj.AddPair('ID', TJsonString.Create(vQuery.FieldByName('ID').AsString));
-      vJsonObj.AddPair('Name', TJsonString.Create(vQuery.FieldByName('Name').AsString));
-      vJsonObj.AddPair('IP', TJsonString.Create(vQuery.FieldByName('IP').AsString));
-      vJsonObj.AddPair('Port', TJsonNumber.Create(vQuery.FieldByName('Port').AsInteger));
+      vJsonObj := TJSONObject.Create;
+      vJsonObj.AddPair('ID', TJsonString.Create(vQuery.FieldByName('ID')
+        .AsString));
+      vJsonObj.AddPair('Name', TJsonString.Create(vQuery.FieldByName('Name')
+        .AsString));
+      vJsonObj.AddPair('IP', TJsonString.Create(vQuery.FieldByName('IP')
+        .AsString));
+      vJsonObj.AddPair('Port', TJsonNumber.Create(vQuery.FieldByName('Port')
+        .AsInteger));
       vJsonArr.Add(vJsonObj);
       vQuery.Next;
     end;
@@ -267,4 +317,5 @@ begin
     vJsonArr.Free;
   end;
 end;
+
 end.
