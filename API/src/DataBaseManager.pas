@@ -8,11 +8,16 @@ uses
 var
   FDConnection: TFDConnection;
 
+const
+  vVideoFilePath: string = '..\..\videos\';
+
 procedure InitializeDataBase;
 
 implementation
 
+
 procedure InitializeDataBase;
+
 begin
   FDConnection := TFDConnection.Create(nil);
   FDConnection.DriverName := 'SQLite';
@@ -27,8 +32,10 @@ begin
   FDConnection.ExecSQL('CREATE TABLE IF NOT EXISTS Videos (' +
     'ID TEXT PRIMARY KEY, ' +
     'Server_ID TEXT, ' +
+    'filePath TEXT, ' +
     'description TEXT, ' +
-    'sizeInBytes INTEGER, ' +
+    'sizeInBytes INTEGER, '+
+    'videoContent BLOB, ' +
     'FOREIGN KEY(Server_ID) REFERENCES Servers(ID))');
 end;
 
