@@ -4,10 +4,12 @@ uses
   Horse, System.JSON, System.SysUtils,
   Data.DB, DataBaseManager,
   FireDAC.Comp.Client, FireDAC.Stan.Def, FireDAC.Stan.Async,
-  FireDAC.DApt, FireDAC.Phys.SQLite, FireDAC.VCLUI.Wait, FireDAC.Stan.Param;
+  FireDAC.DApt, FireDAC.Phys.SQLite, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
+  IdTCPClient, IdException;
 
 procedure CreateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure DeleteServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+procedure UpdateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure GetServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure CheckServerAvailability(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure ListServers(Req: THorseRequest; Res: THorseResponse; Next: TProc);
@@ -69,8 +71,53 @@ begin
 end;
 
 procedure UpdateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  vServerID, vServerName, vServerIP: string;
+  vServerPort: Integer;
+  JSONBody: TJSONObject;
+  vQuery: TFDQuery;
+  vAllFieldsPresent: Boolean;
 begin
-   Res.Send('UpdateServer')   // Precisa fazer????
+  JSONBody := Req.Body<TJSONObject>;
+  vServerID := Req.Params['serverId'];
+
+  vAllFieldsPresent := Assigned(JSONBody.FindValue('name')) and
+                       Assigned(JSONBody.FindValue('ip')) and
+                       Assigned(JSONBody.FindValue('port'));
+
+  if not vAllFieldsPresent then
+  begin
+    Res.Send(TJSONObject.Create.AddPair('message', 'Todos os campos devem ser fornecidos')).Status(400);
+  end
+  else
+  begin
+    vServerName := JSONBody.GetValue('name').Value;
+    vServerIP := JSONBody.GetValue('ip').Value;
+    vServerPort := StrToIntDef(JSONBody.GetValue('port').Value, 0);
+
+
+  vQuery := TFDQuery.Create(nil);
+  try
+    vQuery.Connection := FDConnection;
+    vQuery.SQL.Text := 'UPDATE Servers SET Name = :Name, IP = :IP, Port = :Port WHERE ID = :ID';
+    vQuery.ParamByName('ID').AsString := vServerID;
+    vQuery.ParamByName('Name').AsString := vServerName;
+    vQuery.ParamByName('IP').AsString := vServerIP;
+    vQuery.ParamByName('Port').AsInteger := vServerPort;
+    vQuery.ExecSQL;
+
+    if vQuery.RowsAffected = 0 then
+    begin
+      Res.Send(TJSONObject.Create.AddPair('message', 'Servidor com ID = ' + vServerID + ' não encontrado.')).Status(404);
+    end
+    else
+    begin
+      Res.Send(TJSONObject.Create.AddPair('message', 'Servidor atualizado com sucesso.')).Status(200);
+    end;
+  finally
+    vQuery.Free;
+  end;
+  end;
 end;
 
 procedure DeleteServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
@@ -96,7 +143,7 @@ begin
     end
     else
     begin
-      Res.Send('').Status(200);
+      Res.Send('Servidor excluido com sucesso.').Status(200);
     end;
   finally
     vQuery.Free;
@@ -137,10 +184,58 @@ begin
   end;
 end;
 
+
 procedure CheckServerAvailability(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  vServerID: string;
+  vQuery: TFDQuery;
+  vTCPClient: TIdTCPClient;
+  vJsonObj: TJSONObject;
+  vIP: string;
+  vPort: Integer;
 begin
-  Res.Send('CheckServerAvailability');
+  vServerID := Req.Params['serverId'];
+  vQuery := TFDQuery.Create(nil);
+  vTCPClient := TIdTCPClient.Create(nil);
+  vJsonObj := TJSONObject.Create;
+  try
+    vQuery.Connection := FDConnection;
+    vQuery.SQL.Text := 'SELECT IP, Port FROM Servers WHERE ID = :ID';
+    vQuery.ParamByName('ID').AsString := vServerID;
+    vQuery.Open;
+
+    if vQuery.IsEmpty then
+    begin
+      vJsonObj.AddPair('message', 'Servidor com ID = ' + vServerID + ' não encontrado.');
+      Res.Send(vJsonObj).Status(404);
+    end
+    else
+    begin
+      vIP := vQuery.FieldByName('IP').AsString;
+      vPort := vQuery.FieldByName('Port').AsInteger;
+
+      vTCPClient.Host := vIP;
+      vTCPClient.Port := vPort;
+      try
+        vTCPClient.ConnectTimeout := 1000; // 1 segundo de timeout
+        vTCPClient.Connect;
+        vJsonObj.AddPair('status', 'available');
+      except
+        on E: Exception do
+        begin
+          vJsonObj.AddPair('status', 'unavailable');
+          vJsonObj.AddPair('error', E.Message);
+        end;
+      end;
+      Res.Send(vJsonObj).Status(200);
+    end;
+  finally
+    vQuery.Free;
+    vTCPClient.Free;
+    vJsonObj.Free;
+  end;
 end;
+
 
 procedure ListServers(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var

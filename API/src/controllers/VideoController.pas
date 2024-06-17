@@ -18,7 +18,11 @@ implementation
 
 procedure AddVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 begin
-  Res.Send('AddVideo');
+
+
+
+
+
 end;
 
 procedure DeleteVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);

@@ -27,6 +27,7 @@ begin
     .Post('/api/server', ServerController.CreateServer)
     .Delete('/api/servers/:serverId', ServerController.DeleteServer)
     .Get('/api/servers/:serverId', ServerController.GetServer)
+    .Put('/api/servers/:serverId', ServerController.UpdateServer)
     .Get('/api/servers/available/:serverId', ServerController.CheckServerAvailability)
     .Get('/api/servers', ServerController.ListServers)
     // VIDEOS
