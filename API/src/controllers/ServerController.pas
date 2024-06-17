@@ -143,7 +143,9 @@ begin
     end
     else
     begin
-      Res.Send('Servidor excluido com sucesso.').Status(200);
+      vJsonObj := TJsonObject.Create;
+      vJsonObj.AddPair('message', 'Servidor excluido com sucesso');
+      Res.Send(vJsonObj).Status(200);
     end;
   finally
     vQuery.Free;
@@ -212,27 +214,22 @@ begin
     else
     begin
       vIP := vQuery.FieldByName('IP').AsString;
-      vPort := vQuery.FieldByName('Port').AsInteger;
+      vPort := vQuery.FieldByName('port').AsInteger;
 
       vTCPClient.Host := vIP;
       vTCPClient.Port := vPort;
       try
-        vTCPClient.ConnectTimeout := 1000; // 1 segundo de timeout
+        vTCPClient.ConnectTimeout := 1000;
         vTCPClient.Connect;
         vJsonObj.AddPair('status', 'available');
       except
-        on E: Exception do
-        begin
-          vJsonObj.AddPair('status', 'unavailable');
-          vJsonObj.AddPair('error', E.Message);
-        end;
+        vJsonObj.AddPair('status', 'unavailable');
       end;
       Res.Send(vJsonObj).Status(200);
     end;
   finally
     vQuery.Free;
     vTCPClient.Free;
-    vJsonObj.Free;
   end;
 end;
 
