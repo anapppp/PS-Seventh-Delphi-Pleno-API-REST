@@ -31,11 +31,12 @@ begin
     'Port INTEGER)');
   FDConnection.ExecSQL('CREATE TABLE IF NOT EXISTS Videos (' +
     'ID TEXT PRIMARY KEY, ' +
-    'Server_ID TEXT, ' +
+    'server_ID TEXT, ' +
     'filePath TEXT, ' +
     'description TEXT, ' +
     'sizeInBytes INTEGER, '+
     'videoContent BLOB, ' +
+    'uploadedAt TIMESTAMP, ' +
     'FOREIGN KEY(Server_ID) REFERENCES Servers(ID))');
 end;
 

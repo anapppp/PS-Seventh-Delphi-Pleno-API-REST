@@ -3,7 +3,7 @@ unit VideoController;
 interface
 
 uses
-  Horse, System.JSON, System.SysUtils, System.Classes,
+  Horse, System.JSON, System.SysUtils, System.Classes, System.DateUtils,
   Data.DB, DataBaseManager,
   FireDAC.Comp.Client, FireDAC.Stan.Def, FireDAC.Stan.Async,
   FireDAC.DApt, FireDAC.Phys.SQLite, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
@@ -11,6 +11,7 @@ uses
 
 function VideoExists(const serverID: string; videoID: string = '';
   filePath: string = ''): Boolean;
+function DateToISO8601(const ADateTime: TDateTime): string;
 procedure AddVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure DeleteVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure GetVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
@@ -29,7 +30,7 @@ begin
   try
     vQuery.Connection := FDConnection;
     vQuery.SQL.Text :=
-      'SELECT * FROM Videos WHERE Server_ID = :serverID AND (filePath = :filePath OR ID = :videoID)';
+      'SELECT * FROM Videos WHERE server_ID = :serverID AND (filePath = :filePath OR ID = :videoID)';
     vQuery.ParamByName('serverID').AsString := serverID;
     vQuery.ParamByName('filePath').AsString := filePath;
     vQuery.ParamByName('videoID').AsString := videoID;
@@ -38,6 +39,12 @@ begin
   finally
     vQuery.Free;
   end;
+end;
+
+function DateToISO8601(const ADateTime: TDateTime): string;
+begin
+  Result := FormatDateTime('yyyy-mm-dd"T"hh:nn:ss"Z"',
+    TTimeZone.Local.ToUniversalTime(ADateTime));
 end;
 
 procedure AddVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
@@ -49,9 +56,9 @@ var
   FileStream: TFileStream;
 begin
   JSONBody := Req.Body<TJsonObject>;
+  vServerID := Req.Params['serverID'];
   vVideoDescription := JSONBody.GetValue('description').Value;
   vFileName := JSONBody.GetValue('fileName').Value;
-  vServerID := JSONBody.GetValue('serverID').Value;
 
   if not ServerExists(vServerID) then
   begin
@@ -75,8 +82,8 @@ begin
     vQuery := TFDQuery.Create(nil);
     vQuery.Connection := FDConnection;
     vQuery.SQL.Text :=
-      'INSERT INTO Videos (ID, Server_ID, filePath, description, sizeInBytes, videoContent ) '
-      + 'VALUES (:vVideoID, :vServerID, :vFilePath, :vVideoDescription, :vVideoSizeInBytes, :vVideoContent)';
+      'INSERT INTO Videos (ID, server_ID, filePath, description, sizeInBytes, videoContent, uploadedAt ) '
+      + 'VALUES (:vVideoID, :vServerID, :vFilePath, :vVideoDescription, :vVideoSizeInBytes, :vVideoContent, CURRENT_TIMESTAMP)';
     vQuery.ParamByName('vVideoID').AsString := TGUID.NewGuid.ToString;
     vQuery.ParamByName('vServerID').AsString := vServerID;
     vQuery.ParamByName('vFilePath').AsString := vVideoFilePath + vFileName;
@@ -94,7 +101,7 @@ begin
     else
     begin
       Res.Send(TJsonObject.Create.AddPair('message',
-        'Video Adicionado com sucesso')).Status(201);
+        'Video adicionado com sucesso')).Status(201);
     end;
   finally
     vQuery.Free;
@@ -112,6 +119,13 @@ begin
     vServerID := Req.Params['serverID'];
     vVideoID := Req.Params['videoID'];
 
+    if not ServerExists(vServerID) then
+    begin
+      Res.Send(TJsonObject.Create.AddPair('message', 'Servidor não encontrado'))
+        .Status(404);
+      Exit;
+    end;
+
     if not VideoExists(vServerID, vVideoID) then
     begin
       Res.Send(TJsonObject.Create.AddPair('message',
@@ -122,7 +136,7 @@ begin
     vQuery := TFDQuery.Create(nil);
     vQuery.Connection := FDConnection;
     vQuery.SQL.Text :=
-      'DELETE FROM Videos WHERE ID = :ID AND Server_ID == :serverID';
+      'DELETE FROM Videos WHERE ID = :ID AND server_ID == :serverID';
     vQuery.ParamByName('ID').AsString := vVideoID;
     vQuery.ParamByName('serverID').AsString := vServerID;
     vQuery.ExecSQL;
@@ -163,15 +177,16 @@ begin
     vQuery := TFDQuery.Create(nil);
     vQuery.Connection := FDConnection;
     vQuery.SQL.Text :=
-      'SELECT * FROM Videos WHERE ID=:ID and Server_ID=:Server_ID';
+      'SELECT * FROM Videos WHERE ID=:ID and server_ID=:serverID';
     vQuery.ParamByName('ID').AsString := vVideoID;
-    vQuery.ParamByName('Server_ID').AsString := vServerID;
+    vQuery.ParamByName('serverID').AsString := vServerID;
     vQuery.Open;
     vJsonObj := TJsonObject.Create;
 
     vJsonObj.AddPair('videoContent',
       TJsonString.Create(vQuery.FieldByName('videoContent').AsString));
-    Res.Send(vJsonObj).Status(200);
+    // Res.Send(vJsonObj).Status(200);
+       Res.Status(200);
   finally
     vQuery.Free;
   end;
@@ -198,9 +213,9 @@ begin
     vQuery := TFDQuery.Create(nil);
     vQuery.Connection := FDConnection;
     vQuery.SQL.Text :=
-      'SELECT * FROM Videos WHERE ID=:ID and Server_ID=:Server_ID';
+      'SELECT * FROM Videos WHERE ID=:ID and server_ID=:serverID';
     vQuery.ParamByName('ID').AsString := vVideoID;
-    vQuery.ParamByName('Server_ID').AsString := vServerID;
+    vQuery.ParamByName('serverID').AsString := vServerID;
     vQuery.Open;
 
     vFilePath := vQuery.FieldByName('filePath').AsString;
@@ -209,7 +224,7 @@ begin
     Res.ContentType('application/octet-stream');
     Res.RawWebResponse.SetCustomHeader('Content-Disposition',
       'attachment; filename="' + vVideoID + '"');
-//    Res.SendStream(FileStream);
+    // Res.SendStream(FileStream);
   finally
     FileStream.Free;
   end;
@@ -221,29 +236,34 @@ var
   vJsonArr: TJsonArray;
   vJsonObj: TJsonObject;
   vCount: Integer;
+  vServerID, iso8601Date: String;
 begin
   vQuery := nil;
   vJsonArr := nil;
   try
+    vServerID := Req.Params['serverId'];
     vQuery := TFDQuery.Create(nil);
     vQuery.Connection := FDConnection;
-    vQuery.SQL.Text := 'SELECT * FROM Videos';
+    vQuery.SQL.Text := 'SELECT * FROM Videos WHERE server_ID = :serverID';
+    vQuery.ParamByName('serverID').AsString := vServerID;
     vQuery.Open;
 
     vJsonArr := TJsonArray.Create;
     for vCount := 0 to vQuery.RecordCount - 1 do
     begin
+      iso8601Date := DateToISO8601(vQuery.FieldByName('uploadedAt').AsDateTime);
       vJsonObj := TJsonObject.Create;
       vJsonObj.AddPair('ID', TJsonString.Create(vQuery.FieldByName('ID')
         .AsString));
-      vJsonObj.AddPair('Server_ID',
-        TJsonString.Create(vQuery.FieldByName('Server_ID').AsString));
+      vJsonObj.AddPair('serverID',
+        TJsonString.Create(vQuery.FieldByName('server_ID').AsString));
       vJsonObj.AddPair('filePath',
         TJsonString.Create(vQuery.FieldByName('filePath').AsString));
       vJsonObj.AddPair('description',
         TJsonString.Create(vQuery.FieldByName('description').AsString));
       vJsonObj.AddPair('sizeInBytes',
         TJsonNumber.Create(vQuery.FieldByName('sizeInBytes').AsInteger));
+      vJsonObj.AddPair('uploadedAt', TJsonString.Create(iso8601Date));
       vJsonArr.Add(vJsonObj);
       vQuery.Next;
     end;
@@ -253,5 +273,4 @@ begin
     vJsonArr.Free;
   end;
 end;
-
 end.

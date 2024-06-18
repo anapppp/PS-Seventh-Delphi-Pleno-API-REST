@@ -10,6 +10,7 @@ uses
   IdTCPClient, IdException;
 
 function ServerExists(serverId: string): Boolean;
+function ServerContainsVideo(serverId: string): Boolean;
 procedure CreateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure DeleteServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure UpdateServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
@@ -55,6 +56,23 @@ begin
     vQuery.Connection := FDConnection;
     vQuery.SQL.Text := 'SELECT * FROM Servers WHERE ID = :ServerId';
     vQuery.ParamByName('ServerId').AsString := serverId;
+    vQuery.Open;
+    Result := not vQuery.IsEmpty;
+  finally
+    vQuery.Free;
+  end;
+end;
+
+function ServerContainsVideo(serverId: string): Boolean;
+var
+  vQuery: TFDQuery;
+begin
+  Result := False;
+  try
+    vQuery := TFDQuery.Create(nil);
+    vQuery.Connection := FDConnection;
+    vQuery.SQL.Text := 'SELECT * FROM VIDEOS WHERE server_ID = :ID';
+    vQuery.ParamByName('ID').AsString := serverId;
     vQuery.Open;
     Result := not vQuery.IsEmpty;
   finally
@@ -165,6 +183,13 @@ begin
     if not ServerExists(vServerID) then
     begin
       Res.Send(TJSONObject.Create.AddPair('message', 'Servidor não encontrado'))
+        .Status(404);
+      Exit;
+    end;
+
+    if ServerContainsVideo(vServerID) then
+    begin
+      Res.Send(TJSONObject.Create.AddPair('message', 'Não é possível excluir servidores que contém videos.'))
         .Status(404);
       Exit;
     end;
