@@ -136,7 +136,7 @@ begin
     vQuery := TFDQuery.Create(nil);
     vQuery.Connection := FDConnection;
     vQuery.SQL.Text :=
-      'DELETE FROM Videos WHERE ID = :ID AND server_ID == :serverID';
+      'DELETE FROM Videos WHERE ID = :ID AND server_ID = :serverID';
     vQuery.ParamByName('ID').AsString := vVideoID;
     vQuery.ParamByName('serverID').AsString := vServerID;
     vQuery.ExecSQL;

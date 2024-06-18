@@ -37,7 +37,7 @@ begin
     .Get('/api/servers/:serverId/videos/:videoId', VideoController.DownloadVideo)
     .Get('/api/servers/:serverId/videos', VideoController.ListVideos)
     // RECYCLE
-    .Post('/api/recycler/process/:days', RecyclerController.ProcessRecycle)
+    .Delete('/api/recycler/process/:days', RecyclerController.ProcessRecycle)
     .Get('/api/recycler/status', RecyclerController.GetRecyclerStatus);
   GlobalServer.Listen(9000);
 end;
