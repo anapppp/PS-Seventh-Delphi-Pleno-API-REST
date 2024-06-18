@@ -9,8 +9,8 @@ uses
   FireDAC.DApt, FireDAC.Phys.SQLite, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
   ServerController;
 
-function VideoExists(const serverId, filePath: string;
-  videoId: string = ''): Boolean;
+function VideoExists(const serverID: string; videoID: string = '';
+  filePath: string = ''): Boolean;
 procedure AddVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure DeleteVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 procedure GetVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
@@ -19,8 +19,8 @@ procedure ListVideos(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 
 implementation
 
-function VideoExists(const serverId, filePath: string;
-  videoId: string = ''): Boolean;
+function VideoExists(const serverID: string; videoID: string = '';
+  filePath: string = ''): Boolean;
 var
   vQuery: TFDQuery;
 begin
@@ -29,10 +29,10 @@ begin
   try
     vQuery.Connection := FDConnection;
     vQuery.SQL.Text :=
-      'SELECT * FROM Videos WHERE Server_ID = :ServerId AND (filePath = :filePath OR ID = :VideoID)';
-    vQuery.ParamByName('ServerId').AsString := serverId;
+      'SELECT * FROM Videos WHERE Server_ID = :serverID AND (filePath = :filePath OR ID = :videoID)';
+    vQuery.ParamByName('serverID').AsString := serverID;
     vQuery.ParamByName('filePath').AsString := filePath;
-    vQuery.ParamByName('VideoId').AsString := videoId;
+    vQuery.ParamByName('videoID').AsString := videoID;
     vQuery.Open;
     Result := not vQuery.IsEmpty;
   finally
@@ -44,7 +44,7 @@ procedure AddVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   JSONBody: TJsonObject;
   vQuery: TFDQuery;
-  vServerID, vVideoDescription, vFileName, vVideoID: string;
+  vServerID, vVideoDescription, vFileName: string;
   vVideoSizeInBytes: Int64;
   FileStream: TFileStream;
 begin
@@ -60,7 +60,7 @@ begin
     Exit;
   end;
 
-  if VideoExists(vServerID, vVideoFilePath + vFileName) then
+  if VideoExists(vServerID, '0', vVideoFilePath + vFileName) then
   begin
     Res.Send(TJsonObject.Create.AddPair('message',
       'O vídeo já existe no servidor')).Status(409);
@@ -81,7 +81,8 @@ begin
     vQuery.ParamByName('vServerID').AsString := vServerID;
     vQuery.ParamByName('vFilePath').AsString := vVideoFilePath + vFileName;
     vQuery.ParamByName('vVideoDescription').AsString := vVideoDescription;
-    vQuery.ParamByName('vVideoSizeInBytes').AsString := IntToStr(vVideoSizeInBytes);
+    vQuery.ParamByName('vVideoSizeInBytes').AsString :=
+      IntToStr(vVideoSizeInBytes);
     vQuery.ParamByName('vVideoContent').AsStream := FileStream;
     vQuery.ExecSQL;
 
@@ -102,23 +103,155 @@ begin
 end;
 
 procedure DeleteVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  vQuery: TFDQuery;
+  vVideoID, vServerID: String;
 begin
-  Res.Send('DeleteVideo');
+  vQuery := nil;
+  try
+    vServerID := Req.Params['serverID'];
+    vVideoID := Req.Params['videoID'];
+
+    if not VideoExists(vServerID, vVideoID) then
+    begin
+      Res.Send(TJsonObject.Create.AddPair('message',
+        'Video não encontrado no servidor')).Status(404);
+      Exit;
+    end;
+
+    vQuery := TFDQuery.Create(nil);
+    vQuery.Connection := FDConnection;
+    vQuery.SQL.Text :=
+      'DELETE FROM Videos WHERE ID = :ID AND Server_ID == :serverID';
+    vQuery.ParamByName('ID').AsString := vVideoID;
+    vQuery.ParamByName('serverID').AsString := vServerID;
+    vQuery.ExecSQL;
+
+    if vQuery.RowsAffected = 0 then
+    begin
+      Res.Send(TJsonObject.Create.AddPair('message',
+        'Não foi possivel excluir o video')).Status(404);
+    end
+    else
+    begin
+      Res.Send(TJsonObject.Create.AddPair('message',
+        'Video excluido com sucesso')).Status(200);
+    end;
+  finally
+    vQuery.Free;
+  end;
 end;
 
 procedure GetVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  vQuery: TFDQuery;
+  vJsonObj: TJsonObject;
+  vServerID, vVideoID: String;
 begin
-  Res.Send('GetVideo');
+  vQuery := nil;
+  try
+    vServerID := Req.Params['serverId'];
+    vVideoID := Req.Params['videoId'];
+
+    if not VideoExists(vServerID, vVideoID) then
+    begin
+      Res.Send(TJsonObject.Create.AddPair('message', 'Video não encontrado'))
+        .Status(404);
+      Exit;
+    end;
+
+    vQuery := TFDQuery.Create(nil);
+    vQuery.Connection := FDConnection;
+    vQuery.SQL.Text :=
+      'SELECT * FROM Videos WHERE ID=:ID and Server_ID=:Server_ID';
+    vQuery.ParamByName('ID').AsString := vVideoID;
+    vQuery.ParamByName('Server_ID').AsString := vServerID;
+    vQuery.Open;
+    vJsonObj := TJsonObject.Create;
+
+    vJsonObj.AddPair('videoContent',
+      TJsonString.Create(vQuery.FieldByName('videoContent').AsString));
+    Res.Send(vJsonObj).Status(200);
+  finally
+    vQuery.Free;
+  end;
 end;
 
 procedure DownloadVideo(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  vQuery: TFDQuery;
+  vVideoID, vServerID, vFilePath: string;
+  FileStream: TFileStream;
 begin
-  Res.Send('DownloadVideo');
+  vQuery := nil;
+  try
+    vServerID := Req.Params['serverId'];
+    vVideoID := Req.Params['videoId'];
+
+    if not VideoExists(vServerID, vVideoID) then
+    begin
+      Res.Send(TJsonObject.Create.AddPair('message', 'Video não encontrado'))
+        .Status(404);
+      Exit;
+    end;
+
+    vQuery := TFDQuery.Create(nil);
+    vQuery.Connection := FDConnection;
+    vQuery.SQL.Text :=
+      'SELECT * FROM Videos WHERE ID=:ID and Server_ID=:Server_ID';
+    vQuery.ParamByName('ID').AsString := vVideoID;
+    vQuery.ParamByName('Server_ID').AsString := vServerID;
+    vQuery.Open;
+
+    vFilePath := vQuery.FieldByName('filePath').AsString;
+
+    FileStream := TFileStream.Create(vFilePath, fmOpenRead or fmShareDenyWrite);
+    Res.ContentType('application/octet-stream');
+    Res.RawWebResponse.SetCustomHeader('Content-Disposition',
+      'attachment; filename="' + vVideoID + '"');
+//    Res.SendStream(FileStream);
+  finally
+    FileStream.Free;
+  end;
 end;
 
 procedure ListVideos(Req: THorseRequest; Res: THorseResponse; Next: TProc);
+var
+  vQuery: TFDQuery;
+  vJsonArr: TJsonArray;
+  vJsonObj: TJsonObject;
+  vCount: Integer;
 begin
-  Res.Send('ListVideos');
+  vQuery := nil;
+  vJsonArr := nil;
+  try
+    vQuery := TFDQuery.Create(nil);
+    vQuery.Connection := FDConnection;
+    vQuery.SQL.Text := 'SELECT * FROM Videos';
+    vQuery.Open;
+
+    vJsonArr := TJsonArray.Create;
+    for vCount := 0 to vQuery.RecordCount - 1 do
+    begin
+      vJsonObj := TJsonObject.Create;
+      vJsonObj.AddPair('ID', TJsonString.Create(vQuery.FieldByName('ID')
+        .AsString));
+      vJsonObj.AddPair('Server_ID',
+        TJsonString.Create(vQuery.FieldByName('Server_ID').AsString));
+      vJsonObj.AddPair('filePath',
+        TJsonString.Create(vQuery.FieldByName('filePath').AsString));
+      vJsonObj.AddPair('description',
+        TJsonString.Create(vQuery.FieldByName('description').AsString));
+      vJsonObj.AddPair('sizeInBytes',
+        TJsonNumber.Create(vQuery.FieldByName('sizeInBytes').AsInteger));
+      vJsonArr.Add(vJsonObj);
+      vQuery.Next;
+    end;
+    Res.Send(vJsonArr.ToJSON).Status(200);
+  finally
+    vQuery.Free;
+    vJsonArr.Free;
+  end;
 end;
 
 end.

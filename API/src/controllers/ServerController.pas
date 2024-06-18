@@ -156,7 +156,6 @@ end;
 procedure DeleteServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);
 var
   vQuery: TFDQuery;
-  vJsonObj: TJSONObject;
   vServerID: String;
 begin
   vQuery := nil;
@@ -178,20 +177,15 @@ begin
 
     if vQuery.RowsAffected = 0 then
     begin
-      vJsonObj := TJSONObject.Create;
-      vJsonObj.AddPair('message', 'Não foi possivel excluir o servidor');
-      Res.Send(vJsonObj).Status(404);
+      Res.Send(TJSONObject.Create.AddPair('message', 'Não foi possivel excluir o servidor')).Status(404);
     end
     else
     begin
-      vJsonObj := TJSONObject.Create;
-      vJsonObj.AddPair('message', 'Servidor excluido com sucesso');
-      Res.Send(vJsonObj).Status(200);
+      Res.Send(TJSONObject.Create.AddPair('message', 'Servidor excluido com sucesso')).Status(200);
     end;
   finally
     vQuery.Free;
   end;
-
 end;
 
 procedure GetServer(Req: THorseRequest; Res: THorseResponse; Next: TProc);

@@ -33,8 +33,8 @@ begin
     // VIDEOS
     .Post('/api/servers/:serverId/videos', VideoController.AddVideo)
     .Delete('/api/servers/:serverId/videos/:videoId', VideoController.DeleteVideo)
-    .Get('/api/servers/:serverId/videos/:videoId', VideoController.GetVideo)
-    .Get('/api/servers/:serverId/videos/:videoId/binary', VideoController.DownloadVideo)
+    .Get('/api/servers/:serverId/videos/:videoId/binary', VideoController.GetVideo)
+    .Get('/api/servers/:serverId/videos/:videoId', VideoController.DownloadVideo)
     .Get('/api/servers/:serverId/videos', VideoController.ListVideos)
     // RECYCLE
     .Post('/api/recycler/process/:days', RecyclerController.ProcessRecycle)
